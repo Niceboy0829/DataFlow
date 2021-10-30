@@ -120,13 +120,10 @@ this.editor = new Drawflow(id, Vue, this);
 
 ### For vue 3 example.
 ```javascript
-import { h, getCurrentInstance, render } from 'vue'
-const Vue = { version: 3, h, render };
+import * as Vue from 'vue'
 
-this.editor = new Drawflow(id, Vue);
-// Pass render Vue 3 Instance
-const internalInstance = getCurrentInstance()
-editor.value = new Drawflow(id, Vue, internalInstance.appContext.app._context);
+// Pass render Vue
+this.editor = new Drawflow(id, Vue, this);
 ```
 
 ### Nuxt
@@ -183,7 +180,7 @@ Active reroute connections. Use before `start` or `import`.
 ```javascript
 editor.reroute = true;
 ```
-Create point with doble click on line connection. Doble click on point for remove.
+Create point with double click on line connection. Double click on point for remove.
 
 ## Modules
 Separate your flows in different editors.
@@ -295,11 +292,11 @@ Event | Return | Description
   `nodeSelected` | id | `id` of Node
   `nodeUnselected` | true | Unselect node
   `nodeMoved` | id | `id` of Node
-  `connectionStart` | { output_id, output_class } | `id` of nodes and ouput selected
+  `connectionStart` | { output_id, output_class } | `id` of nodes and output selected
   `connectionCancel` | true | Connection Cancel
-  `connectionCreated` | { output_id, input_id, output_class, input_class } | `id`'s of nodes and ouput/input selected
-  `connectionRemoved` | { output_id, input_id, output_class, input_class } | `id`'s of nodes and ouput/input selected
-  `connectionSelected` | { output_id, input_id, output_class, input_class } | `id`'s of nodes and ouput/input selected
+  `connectionCreated` | { output_id, input_id, output_class, input_class } | `id`'s of nodes and output/input selected
+  `connectionRemoved` | { output_id, input_id, output_class, input_class } | `id`'s of nodes and output/input selected
+  `connectionSelected` | { output_id, input_id, output_class, input_class } | `id`'s of nodes and output/input selected
   `connectionUnselected` | true | Unselect connection
   `addReroute` | id | `id` of Node output
   `removeReroute` | id | `id` of Node output
@@ -311,7 +308,6 @@ Event | Return | Description
   `clickEnd` | event | Once the click changes have been made
   `contextmenu` | event | Click second button mouse event
   `mouseMove` | { x, y } | Position
-  `mouseUp` | event | MouseUp Event
   `keydown` | event | Keydown event
   `zoom` | zoom_level | Level of zoom
   `translate` | { x, y } | Position translate editor
